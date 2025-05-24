@@ -27,3 +27,6 @@ gotify:
 #Watchtower
 watchtower:
 	$(call docker_rebuild,"watchtower","docker/watchtower")
+#Minecraft server
+mcserver:
+	$(call docker_rebuild,"mcserver","docker/mcserver")
