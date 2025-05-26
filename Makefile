@@ -28,5 +28,5 @@ gotify:
 watchtower:
 	$(call docker_rebuild,"watchtower","docker/watchtower")
 #Minecraft server
-mcserver:
-	$(call docker_rebuild,"mcserver","docker/mcserver")
+crafty:
+	$(call docker_rebuild,"crafty","docker/crafty")
