@@ -30,6 +30,6 @@ watchtower:
 #Minecraft server
 crafty:
 	$(call docker_rebuild,"crafty","docker/crafty")
-#PHP WebServer
-php:
-	$(call docker_rebuild,"webserver-php","docker/webserver-php")
+# Apache
+apache:
+	$(call docke)

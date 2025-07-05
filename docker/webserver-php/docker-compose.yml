@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: webserver-php-nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./src:/var/www/html
+    depends_on:
+      - php
+    networks:
+      - webserver_network
+
+  php:
+    image: php:8.2-fpm
+    container_name: webserver-php-fpm
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - webserver_network
+
+  # --- SEZIONE OPZIONALE: DATABASE MYSQL ---
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: webserver-php-mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: your_strong_root_password_here
+  #     MYSQL_DATABASE: your_app_database
+  #     MYSQL_USER: your_app_user
+  #     MYSQL_PASSWORD: your_app_password_here
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   networks:
+  #     - webserver_network
+  #   restart: unless-stopped
+
+volumes: {} # <--- PROVIAMO A METTERE ESPLICITAMENTE UNA MAPPA VUOTA QUI
+
+networks:
+  webserver_network:
+    driver: bridge
+
