@@ -30,14 +30,6 @@ watchtower:
 #Minecraft server
 crafty:
 	$(call docker_rebuild,"crafty","docker/crafty")
-#WebServer
-webserver-php:
-	$(call docker_rebuild,"crafty","docker/php")
-webserver-nginx:
-	$(call docker_rebuild,"crafty","docker/nginx")
-#Ollama
-ollama:
-	$(call docker_rebuild,"ollama","docker/ollama")
-#N8n
-n8n:
-	$(call docker_rebuild,"n8n","docker/n8n")
+#PHP WebServer
+php:
+	$(call docker_rebuild,"webserver-php","docker/webserver-php")

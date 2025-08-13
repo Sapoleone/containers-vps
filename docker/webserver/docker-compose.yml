@@ -1,0 +1,36 @@
+services:
+  nginx:
+    image: nginx:stable
+    container_name: webserver_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./sites:/var/www/html
+    depends_on:
+      - php
+    restart: unless-stopped
+    networks:
+      - reverse-proxy
+      - web_network
+
+  php:
+    build: .
+    #image: php:8.1-fpm
+    container_name: webserver_php_fpm
+    volumes:
+      - ./sites:/var/www/html
+      - ./resolv.conf:/etc/resolv.conf:ro
+    restart: unless-stopped
+    networks:
+      - web_network
+ #     - external_web_connection
+    #dns:
+    #  - 8.8.8.8 #DNS Google
+    #  - 1.1.1.1 #DNS Cloudflare
+
+networks:
+  reverse-proxy:
+    external: true
+  web_network:
+#    internal: true
