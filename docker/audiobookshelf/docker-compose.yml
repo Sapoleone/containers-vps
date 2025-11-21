@@ -1,0 +1,18 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    networks:
+      - reverse-proxy
+    ports:
+      - 13378:80
+    volumes:
+      - ./audiobooks:/audiobooks
+      - ./podcasts:/podcasts
+      - ./config:/config
+      - ./metadata:/metadata
+    environment:
+      - TZ=Europe/Rome

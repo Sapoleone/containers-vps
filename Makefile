@@ -38,6 +38,12 @@ webserver-nginx:
 #Ollama
 ollama:
 	$(call docker_rebuild,"ollama","docker/ollama")
-#N8n
+#N8N
 n8n:
 	$(call docker_rebuild,"n8n","docker/n8n")
+#Home Assistant
+hassio:
+	$(call docker_rebuild,"homeassistant","docker/homeassistant")
+#Penpot
+penpot:
+	$(call docker_rebuild,"penpot","docker/penpot")
